@@ -20,3 +20,12 @@ export class InternalServerException extends HttpException {
         super('Internal server error', HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
+
+export class UnauthorizedException extends HttpException {
+    constructor() {
+        super(
+            'Unauthorized. Please, authorize to continue',
+            HttpStatus.UNAUTHORIZED,
+        );
+    }
+}

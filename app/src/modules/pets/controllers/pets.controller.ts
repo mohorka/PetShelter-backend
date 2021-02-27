@@ -1,10 +1,9 @@
-import { Controller, Post, Body, Get, UseFilters } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import {
   ForbiddenException,
   NotFoundException,
 } from 'src/utils/exceptions/exceptions';
-import { HttpExceptionFilter } from 'src/utils/exceptions/exceptions.filter';
-import PetDto from '../dto/pet.dto';
+import PetDto from '../contracts/pet.dto';
 import { PetsService } from '../services/pets.service';
 
 @Controller('pets')
