@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Pet, PetSchema } from 'src/schemas/petSchema';
-import { PetsController } from '../controllers/petsController';
-import { PetsService } from '../services/petsService';
+import { Pet, PetSchema } from 'src/pets/schemas/pet.schema';
+import { PetsController } from '../pets/controllers/pets.controller';
+import { PetsService } from '../pets/services/pets.service';
 
 @Module({
     imports: [MongooseModule.forFeature([{ name: Pet.name, schema: PetSchema }])],
