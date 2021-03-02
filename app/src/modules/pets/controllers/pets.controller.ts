@@ -1,8 +1,13 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
 import {
-  ForbiddenException,
-  NotFoundException,
-} from 'src/utils/exceptions/exceptions';
+  Request,
+  Controller,
+  Post,
+  Body,
+  Get,
+  UseGuards,
+} from '@nestjs/common';
+import { JwtAuthGuard } from 'src/modules/auth/guards/jwt-auth.guard';
+import { NotFoundException } from 'src/utils/exceptions/exceptions';
 import PetDto from '../contracts/pet.dto';
 import { PetsService } from '../services/pets.service';
 
@@ -16,8 +21,10 @@ export class PetsController {
     if (pets.length == 0) throw new NotFoundException();
     return pets;
   }
+  @UseGuards(JwtAuthGuard)
   @Post()
-  async addPet(@Body() addPetDto: PetDto) {
-    throw new ForbiddenException();
+  async addPet(@Request() req, @Body() addPetDto: PetDto) {
+    await this.petsService.addPet(addPetDto);
+    return req.user;
   }
 }
