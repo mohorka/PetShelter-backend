@@ -1,5 +1,5 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_FILTER } from '@nestjs/core';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PetsController } from 'src/modules/pets/controllers/pets.controller';
@@ -9,13 +9,22 @@ import { PetsModule } from './pets/pets.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true, cache: true }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      cache: true,
+      envFilePath: '.env.development.local',
+    }),
     PetsModule,
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/pets', {
-      useCreateIndex: true,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      connectionName: 'pets',
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get('DB_PATH'),
+        useCreateIndex: true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        connectionName: 'pets',
+      }),
+      inject: [ConfigService],
     }),
     MongooseModule.forRoot('mongodb://127.0.0.1:27017/users', {
       useCreateIndex: true,

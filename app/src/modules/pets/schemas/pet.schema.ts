@@ -6,6 +6,8 @@ export type PetDocument = Pet & Document;
 @Schema()
 export class Pet {
     @Prop({ required: true })
+    _id: number;
+    @Prop({ required: true })
     kind: string;
 
     @Prop()
