@@ -130,3 +130,5 @@ dist
 .history/
 # test rest api
 /app/rest
+# data to seeding
+/app/data

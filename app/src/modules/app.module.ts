@@ -18,7 +18,7 @@ import { PetsModule } from './pets/pets.module';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        uri: configService.get('DB_PATH'),
+        uri: configService.get('DB_PET_PATH'),
         useCreateIndex: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -26,11 +26,16 @@ import { PetsModule } from './pets/pets.module';
       }),
       inject: [ConfigService],
     }),
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/users', {
-      useCreateIndex: true,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      connectionName: 'users',
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get('DB_ADMIN_PATH'),
+        useCreateIndex: true,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        connectionName: 'admins',
+      }),
+      inject: [ConfigService],
     }),
   ],
   providers: [
