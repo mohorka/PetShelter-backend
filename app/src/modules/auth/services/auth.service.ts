@@ -7,14 +7,18 @@ import { EncryptPassword } from 'src/utils/crypto/encrypt';
 export class AuthService {
     constructor(
         private adminService: AdminsService,
-        private jwtService: JwtService,
+        private jwtService: JwtService
     ) { }
 
     async validateUser(username: string, pass: string): Promise<any> {
         const user = await this.adminService.findOne(username);
-        const encryptPassword = await EncryptPassword(pass);
-        if (user && user.password === encryptPassword) {
+        console.log('User from db');
+        console.log(user);
+        //const encryptPassword = await EncryptPassword(pass);
+        if (user && user.password === pass) {
             const { password, ...result } = user;
+            console.log('some result');
+            console.log(result);
             return result;
         }
         return null;
@@ -23,7 +27,7 @@ export class AuthService {
     async login(user: any) {
         const payload = { username: user.name, sub: user._id };
         return {
-            access_token: this.jwtService.sign(payload),
+            access_token: this.jwtService.sign(payload)
         };
     }
 }

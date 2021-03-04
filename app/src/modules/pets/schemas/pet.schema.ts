@@ -1,7 +1,8 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import * as mongoose from 'mongoose';
 
-export type PetDocument = Pet & Document;
+/*export type PetDocument = Pet & Document;
 
 @Schema()
 export class Pet {
@@ -20,4 +21,11 @@ export class Pet {
     age?: number;
 }
 
-export const PetSchema = SchemaFactory.createForClass(Pet);
+export const PetSchema = SchemaFactory.createForClass(Pet);*/
+export const PetSchema = new mongoose.Schema({
+  _id: Number,
+  kind: String,
+  breed: String,
+  name: String,
+  age: Number
+});

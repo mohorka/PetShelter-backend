@@ -4,11 +4,11 @@ import {
   Post,
   Body,
   Get,
-  UseGuards,
+  UseGuards
 } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/modules/auth/guards/jwt-auth.guard';
 import { NotFoundException } from 'src/utils/exceptions/exceptions';
-import PetDto from '../contracts/pet.dto';
+import PetDto from '../../../contracts/pet.dto';
 import { PetsService } from '../services/pets.service';
 
 @Controller('pets')
@@ -21,6 +21,12 @@ export class PetsController {
     if (pets.length == 0) throw new NotFoundException();
     return pets;
   }
+  /*@Get()
+  async findAll(): Promise<any> {
+    const pets = await this.petsService.findAll();
+    if (pets.length == 0) throw new NotFoundException();
+    return pets;
+  }*/
   @UseGuards(JwtAuthGuard)
   @Post()
   async addPet(@Request() req, @Body() addPetDto: PetDto) {
