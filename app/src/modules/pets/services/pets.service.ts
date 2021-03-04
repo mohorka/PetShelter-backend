@@ -13,7 +13,7 @@ export class PetsService {
         return addedPet.save();
     }
 
-    async findPets(petDto: PetDto): Promise<Pet[]> {
+    async findPets(petDto: PetDto): Promise<Pet> {
         return this.petModel
             .find({
                 kind: petDto.kind,

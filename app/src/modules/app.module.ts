@@ -22,11 +22,11 @@ import { PetsModule } from './pets/pets.module';
         useCreateIndex: true,
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        connectionName: 'pets',
+        //connectionName: 'pets',
       }),
       inject: [ConfigService],
     }),
-    MongooseModule.forRootAsync({
+    /*MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get('DB_ADMIN_PATH'),
@@ -36,7 +36,7 @@ import { PetsModule } from './pets/pets.module';
         connectionName: 'admins',
       }),
       inject: [ConfigService],
-    }),
+    }),*/
   ],
   providers: [
     {
