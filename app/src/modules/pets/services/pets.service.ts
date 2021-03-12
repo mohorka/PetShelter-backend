@@ -1,13 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { isNullOrUndefined } from 'util';
 import PetDto from '../../../contracts/pet.dto';
 import { Pet } from '../interfaces/pet.interface';
 
 @Injectable()
 export class PetsService {
-  constructor(@InjectModel('Pet') private petModel: Model<Pet>) { }
+  constructor(@InjectModel('Pet') private petModel: Model<Pet>) {}
 
   async addPet(petDto: PetDto): Promise<Pet> {
     const addedPet = new this.petModel(petDto);
