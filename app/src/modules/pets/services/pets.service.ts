@@ -9,7 +9,11 @@ export class PetsService {
   constructor(@InjectModel('Pet') private petModel: Model<Pet>) {}
 
   async addPet(petDto: PetDto): Promise<Pet> {
-    const addedPet = new this.petModel(petDto);
+    const id = this.petModel.getMaxValueId();
+    const addedPet = new this.petModel({
+      _id: id + 1,
+      ...petDto
+    });
     return addedPet.save();
   }
 

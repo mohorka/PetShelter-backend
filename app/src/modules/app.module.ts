@@ -7,6 +7,7 @@ import { HttpExceptionFilter } from 'src/utils/exceptions/exceptions.filter';
 import { logger } from '../utils/middlewares/logger';
 import { PetsModule } from './pets/pets.module';
 
+
 @Module({
   imports: [
     ConfigModule.forRoot({
