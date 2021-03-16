@@ -2,12 +2,12 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
 
-/*export type AdminDocument = Admin & Document;
+//export type AdminDocument = Admin & Document;
 
-@Schema()
+/*@Schema()
 export class Admin {
-  @Prop({ required: true })
-  _id: number;
+  //@Prop({ required: true })
+  //_id: number;
 
   @Prop({ required: true })
   name: string;

@@ -2,6 +2,7 @@ import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_FILTER } from '@nestjs/core';
 import { MongooseModule } from '@nestjs/mongoose';
+import Joi from 'joi';
 import { PetsController } from 'src/modules/pets/controllers/pets.controller';
 import { HttpExceptionFilter } from 'src/utils/exceptions/exceptions.filter';
 import { logger } from '../utils/middlewares/logger';
@@ -14,6 +15,7 @@ import { PetsModule } from './pets/pets.module';
       isGlobal: true,
       cache: true,
       envFilePath: '.env.development.local',
+      
     }),
     PetsModule,
     MongooseModule.forRootAsync({

@@ -1,7 +1,7 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
-import autoIncrement from 'mongoose-auto-increment';
+
 
 /*export type PetDocument = Pet & Document;
 
@@ -28,8 +28,5 @@ export const PetSchema = new mongoose.Schema({
   kind: String,
   breed: String,
   name: String,
-  age: Number
+  age: Number,
 });
-
-autoIncrement.initialize(mongoose.connection); 
-PetSchema

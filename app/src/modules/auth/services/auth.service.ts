@@ -14,8 +14,8 @@ export class AuthService {
         const user = await this.adminService.findOne(username);
         console.log('User from db');
         console.log(user);
-        //const encryptPassword = await EncryptPassword(pass);
-        if (user && user.password === pass) {
+        const encryptPassword = await EncryptPassword(pass);
+        if (user && user.password === encryptPassword) {
             const { password, ...result } = user;
             console.log('some result');
             console.log(result);
@@ -23,6 +23,8 @@ export class AuthService {
         }
         return null;
     }
+   
+  
 
     async login(user: any) {
         const payload = { username: user.name, sub: user._id };

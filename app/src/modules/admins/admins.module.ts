@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Admin } from './interfaces/admin.interface';
-import { AdminSchema } from './schemas/admins.schema';
+//import { Admin } from './interfaces/admin.interface';
+import {  AdminSchema } from './schemas/admins.schema';
 import { AdminsService } from './services/admins.service';
 
 @Module({
